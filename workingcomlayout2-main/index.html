@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>WorkingCom</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/owl.carousel.min.css" rel="stylesheet">
+        <link href="css/owl.theme.default.min.css" rel="stylesheet">
+        <link href="css/tooplate-gotto-job.css" rel="stylesheet">
+        
+    </head>
+    
+    <body id="top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="images/logo.png" class="img-fluid logo-image">
+
+                    <div class="d-flex flex-column">
+                        <strong class="logo-text">Workingcom</strong>
+                        <small class="logo-slogan">Поиск работы онлайн</small>
+                    </div>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul id="nav-bar-list" class="navbar-nav align-items-center ms-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="job-listings.html">Список вакансий</a>
+                        </li>
+                        <li id="reg" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="reg-users.html">Регистрация</a>
+                        </li>
+                        <li id="reg-company" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="reg-company.html">Регистрация для компании</a>
+                        </li>
+                        <li id="auth" class="nav-item">
+                            <a class="nav-link custom-btn btn" href="auth.html" >Авторизация</a>
+                        </li>
+                        <li id="profile" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="profile.html">Мой профиль</a>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
+        </nav>
+
+        <main>
+
+            <section class="hero-section d-flex justify-content-center align-items-center">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                            <div class="hero-section-text mt-5">
+                                <h6 class="text-white">Вы в поисках работы?</h6>
+
+                                <h1 class="hero-title text-white mt-4 mb-4">Мы найдем работу <br>каждому</h1>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <form class="custom-form hero-form" id="searchForm">
+                                <h3 class="text-white mb-3">Найдите работу мечты</h3>
+                        
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="bi-person custom-icon"></i></span>
+                                            <input type="text" name="VacancyName" id="VacancyName" class="form-control" placeholder="Название вакансии">
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-lg-12 col-12">
+                                        <button type="submit" id="searchSubmit" class="form-control">
+                                            Найти вакансии
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="job-section recent-jobs-section section-padding">
+                <div class="container">
+                    <h1>Популярные вакансии</h1>
+                    <div class="row align-items-center" id="items-center">
+                        <div class="clearfix"></div>
+                        <div class="col-lg-4 col-12 recent-jobs-bottom d-flex ms-auto my-4">
+                            <a href="job-listings.html" class="custom-btn btn ms-lg-auto">Посмотреть все вакансии</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="reviews-section section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <h2 class="text-center mb-5">Популярные компании</h2>
+                            <div class="owl-carousel owl-theme reviews-carousel">
+                                <div class="reviews-thumb">
+                                    <div class="reviews-info d-flex align-items-center">
+                                        <img src="images/companyavatar/sber-logo.jpg" class="avatar-image img-fluid" alt="">
+
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap w-100 ms-3">
+                                            <p class="mb-0">
+                                                <strong>Сбербанк</strong>
+                                            </p>
+                                            <div class="reviews-icons">
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-body">
+                                        <img src="images/left-quote.png" class="quote-icon img-fluid" alt="">
+
+                                        <h4 class="reviews-title">российский финансовый конгломерат, крупнейший универсальный банк России и Восточной Европы.</h4>
+                                    </div>
+                                </div>
+                                <div class="reviews-thumb">
+                                    <div class="reviews-info d-flex align-items-center">
+                                        <img src="images/companyavatar/gazprom-logo.jpg" class="avatar-image img-fluid" alt="">
+
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap w-100 ms-3">
+                                            <p class="mb-0">
+                                                <strong>Газпром</strong>
+                                            </p>
+                                            <div class="reviews-icons">
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                                <i class="bi-star-fill"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-body">
+                                        <img src="images/left-quote.png" class="quote-icon img-fluid" alt="">
+
+                                        <h4 class="reviews-title">российская транснациональная энергетическая компания, более 50 % акций которой принадлежит государству.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-12 d-flex align-items-center">
+                            <p class="copyright-text">Copyright © Workingcom 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/counter.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

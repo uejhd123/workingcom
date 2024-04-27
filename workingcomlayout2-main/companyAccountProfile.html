@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Редактирование пользователя</title>
+    </head>
+    <body>
+    <h2>Редактирование пользователя</h2>
+    <form id="userForm" action="http://localhost:8000/api/v1/userupdate/" method="put">
+
+        <input type="hidden" name="id" value="123"> 
+
+        <label for="username">Имя пользователя:</label><br>
+        <input type="text" id="username" name="username" value="Имя пользователя"><br>
+
+        <label for="first_name">Имя:</label><br>
+        <input type="text" id="first_name" name="first_name" value="Имя"><br>
+
+        <label for="last_name">Фамилия:</label><br>
+        <input type="text" id="last_name" name="last_name" value="Фамилия"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="example@example.com"><br>
+        <label for="phone_number">Номер телефона:</label><br>
+        <input type="text" id="phone_number" name="phone_number" value="+1234567890"><br>
+        <label for="address">Адрес:</label><br>
+        <input type="text" id="address" name="address" value="Адрес"><br>
+        <label for="bio">Биография:</label><br>
+        <textarea id="bio" name="bio">Биография</textarea><br>
+        <label for="preferences">Предпочтения:</label><br>
+        <textarea id="preferences" name="preferences">Предпочтения</textarea><br>
+        <input type="text" id="password" name="password" placeholder="для изменения данных введите пароль" style="padding: 10px; width: 250px" ><br>
+        <h2 id="error" style="display: none; color:red; background-color: rgba(248, 157, 122, 0.959);">Введите пароль для внесения изменений</h2>
+        <input id="changeProfile" type="submit" value="Сохранить изменения">
+    </form>
+    <form id="vacancyForm" action="http://localhost:8000/api/v1/vacancylist/" method="post">
+        <label for="VacancyName">Vacancy Name:</label>
+        <input type="text" id="VacancyName" name="VacancyName" required>
+    
+        <label for="Salary">Salary:</label>
+        <input type="number" id="Salary" name="Salary">
+    
+        <label for="Busyness">Busyness:</label>
+        <input type="text" id="Busyness" name="Busyness" required>
+    
+        <label for="Experience">Experience:</label>
+        <input type="text" id="Experience" name="Experience" required>
+    
+        <label for="VacancyDescription">Vacancy Description:</label>
+        <textarea id="VacancyDescription" name="VacancyDescription" required></textarea>
+    
+        <label for="VacancyGeo">Vacancy Geo:</label>
+        <input type="text" id="VacancyGeo" name="VacancyGeo" required>
+    
+        <button type="submit">Submit</button>
+    </form>
+    <button onclick="deleteJwt()">выйти из аккаунта</button>
+    <script src="js/profileScript.js"></script>
+    </body>
+</html>

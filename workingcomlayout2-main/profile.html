@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Редактирование пользователя</title>
+        <link rel="stylesheet" href="css/profile.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/owl.carousel.min.css" rel="stylesheet">
+        <link href="css/owl.theme.default.min.css" rel="stylesheet">
+        <link href="css/tooplate-gotto-job.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/forms.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="images/logo.png" class="img-fluid logo-image">
+
+                    <div class="d-flex flex-column">
+                        <strong class="logo-text">Workingcom</strong>
+                        <small class="logo-slogan">Поиск работы онлайн</small>
+                    </div>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul id="nav-bar-list" class="navbar-nav align-items-center ms-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="job-listings.html">Список вакансий</a>
+                        </li>
+                        <li id="reg" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="profile.html">Мой профиль</a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
+        </nav>
+        <section>
+            <h1>Редактирование пользователя</h1>
+            <form id="userForm" action="http://localhost:8000/api/v1/userupdate/" method="put">
+                <div class="nice-form-group">
+                    <label for="username">Имя пользователя:</label>
+                    <input type="text" id="username" name="username" value="Имя пользователя" />
+                </div>
+                <div class="nice-form-group">
+                    <label for="first_name">Имя:</label>
+                    <input type="text" id="first_name" name="first_name" value="Имя" />
+                </div>
+                <div id="last_name-group" class="nice-form-group">
+                    <label for="last_name">Фамилия:</label>
+                    <input type="text" id="last_name" name="last_name" />
+                </div>
+                <div class="nice-form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="example@example.com" required />
+                </div>
+                <div class="nice-form-group">
+                    <label for="phone_number">Номер телефона:</label>
+                    <input type="text" id="phone_number" name="phone_number" value="+1234567890" class="icon-left" />
+                </div>
+                <div class="nice-form-group">
+                    <label for="address">Адрес:</label>
+                    <input type="text" id="address" name="address" value="Адрес" />
+                </div>
+                <div class="nice-form-group">
+                    <label for="bio">Биография:</label>
+                    <textarea id="bio" name="bio">Биография</textarea>
+                </div>
+                <div id="preferences-group" class="nice-form-group">
+                    <label for="preferences">Предпочтения:</label>
+                    <textarea id="preferences" name="preferences">Предпочтения</textarea>
+                </div>
+                <div class="nice-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="для изменения данных введите пароль" class="icon-left" />
+                </div>
+                <div id="error" style="display: none; color: red; background-color: rgba(248, 157, 122, 0.959);">
+                    Введите пароль для внесения изменений
+                </div>
+                <div class="button-group">
+                    <div>
+                        <input id="changeProfile" type="submit" value="Сохранить изменения" class="login-btn">
+                    </div>
+                    <div>
+                        <input onclick="deleteJwt()" type="button" value="выйти из аккаунта" class="login-btn">
+                    </div>
+                    <div>
+                        <input onclick="showVacancyModal()" id="addVacancy" type="button" value="Добавить вакансию" class="login-btn">
+                    </div>
+                    <div>
+                        <input onclick="showActualVacancy()" type="button" id="actualVacancy" value="Посмотреть вакансии" class="login-btn">
+                    </div>
+                </div>
+            </form>
+        </section>
+        <dialog id="dialog1">
+            <h2 id="message"></h2>
+            <button onclick="window.dialog1.close();" aria-label="close" class="x">❌</button>
+        </dialog>
+        <dialog id="dialog2">
+            <h2>Добавить вакансию</h2>
+            <form id="vacancyForm" action="http://localhost:8000/api/v1/vacancylist/" method="post">
+                <div class="nice-form-group">
+                    <label for="username">Название вакансии:</label>
+                    <input type="text" id="VacancyName" name="VacancyName" required />
+                </div>
+                <div class="nice-form-group">
+                    <label for="Salary">Зарплата:</label>
+                    <input type="number" id="Salary" name="Salary">
+                </div>
+                <div class="nice-form-group">
+                    <label for="Busyness">Занятость:</label>
+                    <input type="text" id="Busyness" name="Busyness" required>
+                </div>
+                <div class="nice-form-group">
+                    <label for="Experience">Опыт:</label>
+                    <input type="text" id="Experience" name="Experience" required>
+                </div>
+                <div class="nice-form-group">
+                    <label for="VacancyDescription">Описание:</label>
+                    <textarea id="VacancyDescription" name="VacancyDescription" required></textarea>
+                </div>
+                <div class="nice-form-group">
+                    <label for="VacancyRequirements">Требования:</label>
+                    <textarea id="VacancyRequirements" name="VacancyRequirements" required></textarea>
+                </div>
+                <div class="nice-form-group">
+                    <label for="VacancyResponsibilities">Обязанности:</label>
+                    <textarea id="VacancyResponsibilities" name="VacancyResponsibilities" required></textarea>
+                </div>
+                <div class="nice-form-group">
+                    <label for="VacancyConditions">Условия:</label>
+                    <textarea id="VacancyConditions" name="VacancyConditions" required></textarea>
+                </div>
+                <div class="nice-form-group">
+                    <label for="Contacts">Контакты:</label>
+                    <textarea id="Contacts" name="Contacts" required></textarea>
+                </div>
+                <div class="nice-form-group">
+                    <label for="VacancyGeo">Город:</label>
+                    <input type="text" id="VacancyGeo" name="VacancyGeo" required>
+                </div>
+                
+                <input type="submit" value="Опубликовать" class="login-btn">
+            </form>
+            <button onclick="window.dialog2.close();" aria-label="close" class="x">❌</button>
+        </dialog>
+        <dialog id="dialog3">
+            <div class="jobs"></div>
+            <button onclick="window.dialog1.close();" aria-label="close" class="x">❌</button>
+        </dialog>
+        <script src="js/profileScript.js"></script>
+    </body>
+</html>
