@@ -44,7 +44,7 @@ function renderJob(job) {
     element.innerHTML += `
     <div class="job-body">
         <h4 class="job-title">
-            <a href="job-details.html" class="job-title-link">${job.VacancyName}</a>
+            <a href="job-details.html?vacancyId=${job.id}" class="job-title-link">${job.VacancyName}</a>
         </h4>
 
         <div class="d-flex align-items-center">
@@ -71,7 +71,7 @@ function renderJob(job) {
                 ${job.Salary} \u20bd
             </p>
 
-            <a href="job-details.html" class="custom-btn btn ms-auto">Откликнуться</a>
+            <a href="job-details.html?vacancyId=${job.id}" class="custom-btn btn ms-auto">Откликнуться</a>
         </div>
     </div>
     <br>

@@ -91,6 +91,9 @@ async function renderJob(job) {
                     </p>
                 `).join('')}
             </div>
+            <a id="deleteVacancy" onclick="deleteVacancy()" class="custom-btn btn ms-auto" style="display: ${companyAccount ? "block" : "none"};">Закрыть вакансию</a>
+            <br>
+            <a class="custom-btn btn ms-auto" style="display: ${companyAccount ? "block" : "none"};">Изменить вакансию</a>
         </div>
     `;
     vacancyInfo.innerHTML = htmlElement;
@@ -118,6 +121,34 @@ function fetchAndRenderJobs(vacancyId, jwt) {
         console.error('Ошибка при получении данных:', error);
     });
 }
+
+function closeVacancy(vacancyId, jwt) {
+    fetch(`http://localhost:8000/api/v1/vacancydelete/${vacancyId}/`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .catch(error => {
+        message.innerHTML = 'Вакансия удалена';
+        window.location.href = 'localhost:7000/index.html'
+    });
+}
+let vacancyIdPrev;
+var jwtInCookies = getAllCookies().jwtToken;
+let jwtPayload = parseJwt(jwtInCookies).user_id;
+
+let deleteVacancy = () => {
+    closeVacancy(vacancyIdPrev, jwtInCookies);
+}
+
 
 //отправляем письмо
 async function sendMail() {
@@ -148,20 +179,18 @@ async function sendMail() {
     }
 };
 
-var jwtInCookies = getAllCookies().jwtToken;
-let jwtPayload = parseJwt(jwtInCookies).user_id;
-
 //парсинг данных из поисковой строки
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const vacancyId = urlParams.get('vacancyId');
-
+    vacancyIdPrev = vacancyId;
     if (vacancyId) {
         fetchAndRenderJobs(vacancyId, jwtInCookies)
     } else {
         console.error('Параметр vacancyId не найден в URL');
     }
 });
+
 
 //функция для получения данных о пользователе
 async function fetchUserData(userId) {

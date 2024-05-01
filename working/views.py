@@ -33,7 +33,6 @@ class VacancyAPIUpdate(generics.RetrieveUpdateAPIView):
 class VacancyAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Vacancy.objects.all()
     serializer_class = VacancySerializer
-    permission_classes = (IsAdminOrReadOnly, )
 
 
 class UserAPIList(generics.ListCreateAPIView):
@@ -44,6 +43,7 @@ class UserAPIList(generics.ListCreateAPIView):
 class UserAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+
 
 
 class SendMailView(APIView):

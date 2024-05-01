@@ -75,7 +75,6 @@ function fetchAndRenderJobs() {
     .then(data => {
         var count = data.count;
         data.results.forEach(job => {
-            console.log(job)
             renderJob(job)
         });
     })
