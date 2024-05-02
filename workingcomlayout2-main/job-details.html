@@ -64,7 +64,54 @@
                 </div>
             </header>
 
-
+            <dialog id="dialog2">
+                <h2>Изменить вакансию</h2>
+                <form id="vacancyForm" action="http://localhost:8000/api/v1/vacancylist/" method="post">
+                    <div id="input-area" class="nice-form-group">
+                        <label for="username">Название вакансии:</label>
+                        <input type="text" id="VacancyName" name="VacancyName" required />
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="Salary">Зарплата:</label>
+                        <input type="number" id="Salary" name="Salary">
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="Busyness">Занятость:</label>
+                        <input type="text" id="Busyness" name="Busyness" required>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="Experience">Опыт:</label>
+                        <input type="text" id="Experience" name="Experience" required>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="VacancyDescription">Описание:</label>
+                        <textarea id="VacancyDescription" name="VacancyDescription" required></textarea>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="VacancyRequirements">Требования:</label>
+                        <textarea id="VacancyRequirements" name="VacancyRequirements" required></textarea>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="VacancyResponsibilities">Обязанности:</label>
+                        <textarea id="VacancyResponsibilities" name="VacancyResponsibilities" required></textarea>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="VacancyConditions">Условия:</label>
+                        <textarea id="VacancyConditions" name="VacancyConditions" required></textarea>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="Contacts">Контакты:</label>
+                        <textarea id="Contacts" name="Contacts" required></textarea>
+                    </div>
+                    <div id="input-area" class="nice-form-group">
+                        <label for="VacancyGeo">Город:</label>
+                        <input type="text" id="VacancyGeo" name="VacancyGeo" required>
+                    </div>
+                    
+                    <input type="submit" value="Изменить вакансию" id="login-btn" class="custom-btn btn ms-auto">
+                </form>
+                <button onclick="window.dialog2.close();" aria-label="close" class="x">❌</button>
+            </dialog>
             <section class="job-section section-padding pb-0">
                 <div class="container">
                     <div id="vacancyInfo" class="row">

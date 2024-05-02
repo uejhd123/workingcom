@@ -93,15 +93,94 @@ async function renderJob(job) {
             </div>
             <a id="deleteVacancy" onclick="deleteVacancy()" class="custom-btn btn ms-auto" style="display: ${companyAccount ? "block" : "none"};">Закрыть вакансию</a>
             <br>
-            <a class="custom-btn btn ms-auto" style="display: ${companyAccount ? "block" : "none"};">Изменить вакансию</a>
+            <dialog id="dialog1">
+                <h1 id="results1"></h1>
+                <button onclick="window.location.href='localhost:7000'" aria-label="close" class="x">❌</button>
+            </dialog>
+            <a class="custom-btn btn ms-auto" onclick="showVacancyEditDialog()" style="display: ${companyAccount ? "block" : "none"};">Изменить вакансию</a>
         </div>
     `;
     vacancyInfo.innerHTML = htmlElement;
 }
 
+
+function showVacancyEditDialog() {
+    window.dialog2.show();
+    fetch(`http://localhost:8000/api/v1/vacancylist/${vacancyIdPrev}`, {
+        headers: {
+            'Authorization': `Bearer ${jwtInCookies}`
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Заполнение полей формы данными из объекта data
+        document.getElementById('VacancyName').value = data.VacancyName;
+        document.getElementById('Salary').value = data.Salary;
+        document.getElementById('Busyness').value = data.Busyness;
+        document.getElementById('Experience').value = data.Experience;
+        document.getElementById('VacancyDescription').value = data.VacancyDescription;
+        document.getElementById('VacancyRequirements').value = data.VacancyRequirements;
+        document.getElementById('VacancyResponsibilities').value = data.VacancyResponsibilities;
+        document.getElementById('VacancyConditions').value = data.VacancyConditions;
+        document.getElementById('Contacts').value = data.Contacts;
+        document.getElementById('VacancyGeo').value = data.VacancyGeo;
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
+}
+
+document.getElementById('vacancyForm').addEventListener('submit', function(event) {
+    // Предотвращаем стандартное действие отправки формы
+    event.preventDefault();
+    console.log(document.cookie);
+    // Создаем объект data и заполняем его значениями из формы
+    let data = {
+        VacancyName: document.getElementById('VacancyName').value,
+        Salary: document.getElementById('Salary').value,
+        Busyness: document.getElementById('Busyness').value,
+        Experience: document.getElementById('Experience').value,
+        VacancyDescription: document.getElementById('VacancyDescription').value,
+        VacancyRequirements: document.getElementById('VacancyRequirements').value,
+        VacancyResponsibilities: document.getElementById('VacancyResponsibilities').value,
+        VacancyConditions: document.getElementById('VacancyConditions').value,
+        Contacts: document.getElementById('Contacts').value,
+        VacancyGeo: document.getElementById('VacancyGeo').value,
+        userId: jwtPayload,
+        VacancyUsername: getAllCookies().username
+    };
+    fetch(`http://localhost:8000/api/v1/vacancylist/${vacancyIdPrev}/`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${jwtInCookies}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Данные успешно отправлены на сервер:', data);
+        window.dialog2.close();
+    })
+    .catch(error => {
+        console.error('Ошибка при отправке данных:', error);
+        // Обработка ошибки, если нужно
+    });
+});
+
+
 //получаем вакансии с api
 function fetchAndRenderJobs(vacancyId, jwt) {
-    const jwtToken = getAllCookies().jwtToken;
     fetch(`http://localhost:8000/api/v1/vacancylist/${vacancyId}`, {
         headers: {
             'Authorization': `Bearer ${jwt}`
@@ -137,7 +216,6 @@ function closeVacancy(vacancyId, jwt) {
         return response.json();
     })
     .catch(error => {
-        message.innerHTML = 'Вакансия удалена';
         window.location.href = 'localhost:7000/index.html'
     });
 }
@@ -147,7 +225,10 @@ let jwtPayload = parseJwt(jwtInCookies).user_id;
 
 let deleteVacancy = () => {
     closeVacancy(vacancyIdPrev, jwtInCookies);
+    document.getElementById('results1').value = "Вакансия закрыта";
+    window.dialog1.show();    
 }
+
 
 
 //отправляем письмо

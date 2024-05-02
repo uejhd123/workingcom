@@ -43,6 +43,7 @@ function updateFormAndSubmit(userId) {
                 document.getElementById("preferences-group").style.display = "none";
                 document.getElementById("last_name-group").style.display = "none";
             }
+            document.cookie = "username=" + data.username + "; path=/";
             document.getElementById('username').value = data.username;
             document.getElementById('first_name').value = data.first_name;
             document.getElementById('last_name').value = data.last_name;
@@ -75,6 +76,8 @@ window.onload = () => {
 let deleteJwt = () => {
     let jwtInCookies = getAllCookies().jwtToken;
     document.cookie = 'jwtToken=' + jwtInCookies + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    let username = getAllCookies().username;
+    document.cookie = 'jwtToken=' + username + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     window.location.href = 'http://localhost:7000/index.html' 
 }
 
