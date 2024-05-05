@@ -30,8 +30,8 @@ sed -i 's/ALLOWED_HOSTS = ['178.154.227.55', 'localhost', '127.0.0.1', 'localhos
 pip3 install -r workingcom/requirments.txt
 sed  -i 's/root \/var\/www\/html/root \/usr\/share\/nginx\/html/g' /etc/nginx/sites-available/default
 systemctl restart nginx
-sed -i 's/localhost:8000/178.154.227.55:8000/g' js/*.js
-sed -i 's/localhost:7000/178.154.227.55/g' js/*.js
+sed -i 's/localhost:8000/ВСТАВИТЬ АДРЕС/g' js/*.js
+sed -i 's/localhost:7000/ВСТАВИТЬ АДРЕС/g' js/*.js
 
 python3 workingcom/manage.py makemigrations
 python3 workingcom/manage.py migrate
