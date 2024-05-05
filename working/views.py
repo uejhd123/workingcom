@@ -1,7 +1,6 @@
 from .models import Vacancy, CustomUser
 from .serializers import VacancySerializer, UserSerializer
-from rest_framework import generics, status, permissions
-from .permissions import IsAdminOrReadOnly
+from rest_framework import generics, status
 from rest_framework.response import Response
 from .filters import VacancyFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -19,7 +18,6 @@ class StandardResultsSetPagination(PageNumberPagination):
 class VacancyAPIList(generics.ListCreateAPIView):
     queryset = Vacancy.objects.all()
     serializer_class = VacancySerializer
-    permission_classes = (permissions.IsAuthenticated,)
     filter_backends = [DjangoFilterBackend]
     filterset_class = VacancyFilter
     pagination_class = StandardResultsSetPagination

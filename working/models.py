@@ -6,7 +6,6 @@ class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True, unique=True)
     address = models.CharField(max_length=100, blank=True)
     bio = models.TextField()
-    preferences = models.TextField(blank=True)
     CompanyAccount = models.BooleanField(default=False)
     email = models.CharField(max_length=254, unique=True)
 
