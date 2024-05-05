@@ -40,7 +40,6 @@ function updateFormAndSubmit(userId) {
                 document.getElementById("addVacancy").style.display = "none";
                 document.getElementById("actualVacancy").style.display = "none";
             } else {
-                document.getElementById("preferences-group").style.display = "none";
                 document.getElementById("last_name-group").style.display = "none";
             }
             document.cookie = "username=" + data.username + "; path=/";
@@ -51,7 +50,6 @@ function updateFormAndSubmit(userId) {
             document.getElementById('phone_number').value = data.phone_number;
             document.getElementById('address').value = data.address;
             document.getElementById('bio').value = data.bio;
-            document.getElementById('preferences').value = data.preferences;
             companyName = data.first_name;
         })
         .catch(error => {
@@ -59,6 +57,24 @@ function updateFormAndSubmit(userId) {
             window.dialog1.showModal();
         });
 }
+
+
+var summary = document.getElementById('bio');
+summary.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    var start = this.selectionStart;
+    var end = this.selectionEnd;
+
+    var content = this.value;
+
+    this.value = content.substring(0, end)
+      + "\n" + "-"
+      + content.substring(start);
+
+    this.selectionStart = this.selectionEnd = end + 2;
+  }
+});
 
 function parseJwt(token) {
     let base64Url = token.split('.')[1];
@@ -86,16 +102,16 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     if (this.password.value == "" || this.password.value == " " || this.password.value == undefined) {
         document.getElementById('error').style.display = 'block';
     }
+    let phoneNum = this.phone_number.value.replaceAll("+", "").replaceAll(" ", "").replaceAll("(","").replaceAll(")", "");
     let formData = {
         username: this.username.value,
         first_name: this.first_name.value,
         last_name: this.last_name.value,
         email: this.email.value,
-        phone_number: this.phone_number.value,
+        phone_number: phoneNum,
         address: this.address.value,
         bio: this.bio.value,
-        preferences: this.preferences.value,
-        password: this.password.value,
+        password: this.password.value
     };
     fetch(`http://localhost:8000/api/v1/userupdate/${jwtPayload}`, {
         method: 'PUT',
@@ -242,3 +258,42 @@ function fetchAndRenderJobs() {
 function showActualVacancy() {
     window.location.href = `http://localhost:7000/job-company-listing.html`;
 }
+
+
+
+window.addEventListener("DOMContentLoaded", function() {
+    [].forEach.call( document.querySelectorAll('.tel'), function(input) {
+    var keyCode;
+    function mask(event) {
+        event.keyCode && (keyCode = event.keyCode);
+        var pos = this.selectionStart;
+        if (pos < 3) event.preventDefault();
+        var matrix = "+7 (___) ___ ____",
+            i = 0,
+            def = matrix.replace(/\D/g, ""),
+            val = this.value.replace(/\D/g, ""),
+            new_value = matrix.replace(/[_\d]/g, function(a) {
+                return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+            });
+        i = new_value.indexOf("_");
+        if (i != -1) {
+            i < 5 && (i = 3);
+            new_value = new_value.slice(0, i)
+        }
+        var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+            function(a) {
+                return "\\d{1," + a.length + "}"
+            }).replace(/[+()]/g, "\\$&");
+        reg = new RegExp("^" + reg + "$");
+        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+        if (event.type == "blur" && this.value.length < 5)  this.value = ""
+    }
+
+    input.addEventListener("input", mask, false);
+    input.addEventListener("focus", mask, false);
+    input.addEventListener("blur", mask, false);
+    input.addEventListener("keydown", mask, false)
+
+  });
+
+});

@@ -1,6 +1,43 @@
 document.getElementById('userForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Предотвращаем стандартное действие отправки формы
 
+
+    const companyData = `
+    Название компании:
+    - ${this.first_name.value}
+
+    Контактная информация:
+    - Адрес: ${this.address.value}
+    - Телефон: ${this.phone_number.value}
+    - Электронная почта: ${this.email.value}
+    - Сайт:
+
+    О компании:
+    - Описание: 
+    - Год основания:
+    - Количество сотрудников:
+    - Город/регион:
+    - Страна:
+
+    Деятельность:
+    - Основной вид деятельности:
+    - Продукты/услуги: 
+
+    Награды и достижения:
+    - 
+
+    Партнеры и совместные проекты:
+    - Партнер 1:
+    - Совместный проект 1:
+
+    Отзывы и рейтинги:
+    - Рейтинг на платформе 1:
+
+    Сотрудничество и партнерства:
+    - Партнеры по бизнесу:
+    - Отраслевые союзы и ассоциации:
+    `;
+
     // Получаем данные из формы
     var formData = {
         username: this.username.value,
@@ -10,8 +47,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         password: this.password.value, // Убедитесь, что пароль отправляется безопасно и не в открытом виде
         phone_number: this.phone_number.value,
         address: this.address.value,
-        bio: this.bio.value,
-        preferences: "Компания",
+        bio: companyData,
         CompanyAccount: true,
     };
 

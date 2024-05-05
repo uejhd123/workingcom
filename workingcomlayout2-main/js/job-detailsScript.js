@@ -32,9 +32,13 @@ let vacancyUserId = 0;
 //функция для вставки разметки
 async function renderJob(job) {
     let companyAccount;
+    let usr;
     try {
         let currentUserData = await fetchUserData(jwtPayload);
+        console.log(currentUserData);
+        console.log(job)
         companyAccount = currentUserData.CompanyAccount;
+        usr = currentUserData.first_name;
     } catch(error) {
         console.log("Произошла ошибка");
     }
@@ -91,13 +95,13 @@ async function renderJob(job) {
                     </p>
                 `).join('')}
             </div>
-            <a id="deleteVacancy" onclick="deleteVacancy()" class="custom-btn btn ms-auto" style="display: ${companyAccount ? "block" : "none"};">Закрыть вакансию</a>
+            <a id="deleteVacancy" onclick="deleteVacancy()" class="custom-btn btn ms-auto" style="display: ${companyAccount && usr == job.VacancyUsername ? "block" : "none"};">Закрыть вакансию</a>
             <br>
             <dialog id="dialog1">
                 <h1 id="results1"></h1>
                 <button onclick="window.location.href='localhost:7000'" aria-label="close" class="x">❌</button>
             </dialog>
-            <a class="custom-btn btn ms-auto" onclick="showVacancyEditDialog()" style="display: ${companyAccount ? "block" : "none"};">Изменить вакансию</a>
+            <a class="custom-btn btn ms-auto" onclick="showVacancyEditDialog()" style="display: ${companyAccount && usr == job.VacancyUsername ? "block" : "none"};">Изменить вакансию</a>
         </div>
     `;
     vacancyInfo.innerHTML = htmlElement;
@@ -234,13 +238,13 @@ let deleteVacancy = () => {
 //отправляем письмо
 async function sendMail() {
     const subject = 'На вашу вакансию откликнулся пользователь!';
-    let createBodyString = (userName, userEmail, phoneNumber) => `На вашу вакансию откликнулся пользователь: ${userName}.\nВот его контактные данные:\nEmail: ${userEmail}\nНомер телефона: ${phoneNumber}`;
+    let createBodyString = (userName, userEmail, phoneNumber, resume) => `На вашу вакансию откликнулся пользователь: ${userName}.\nВот его контактные данные:\nEmail: ${userEmail}\nНомер телефона: ${phoneNumber}, и резюме: ${resume}`;
 
     try {
         let data = await fetchUserData(vacancyUserId);
         const companyEmail = data.email;
         let currentUserData = await fetchUserData(jwtPayload);
-        let body = createBodyString(currentUserData.first_name + " " + currentUserData.last_name, currentUserData.email, currentUserData.phone_number);
+        let body = createBodyString(currentUserData.first_name + " " + currentUserData.last_name, currentUserData.email, currentUserData.phone_number, currentUserData.bio);
 
         fetch('http://localhost:8000/api/v1/sendmail/', {
             method: 'POST',
