@@ -22,9 +22,3 @@ def send_email(subject, body, to):
         print("Failed to authenticate")
     finally:
         server.quit()
-
-subject = "Test Email"
-body = "This is a test email sent from Python."
-to = "akulenko21@bk.ru"
-
-send_email(subject, body, to)

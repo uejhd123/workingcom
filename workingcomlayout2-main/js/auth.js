@@ -28,8 +28,10 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         return response.json();
     })
     .then(data => {
+        var username = document.getElementById('username').value;
         var token = data.access;
         document.cookie = "jwtToken=" + token + "; path=/";
+        document.cookie = "username=" + username + "; path=/";
         window.location.href = 'http://localhost:7000/index.html'
     })
     .catch(error => {

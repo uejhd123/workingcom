@@ -140,10 +140,7 @@ function showVacancyEditDialog() {
 }
 
 document.getElementById('vacancyForm').addEventListener('submit', function(event) {
-    // Предотвращаем стандартное действие отправки формы
     event.preventDefault();
-    console.log(document.cookie);
-    // Создаем объект data и заполняем его значениями из формы
     let data = {
         VacancyName: document.getElementById('VacancyName').value,
         Salary: document.getElementById('Salary').value,
@@ -238,7 +235,7 @@ let deleteVacancy = () => {
 //отправляем письмо
 async function sendMail() {
     const subject = 'На вашу вакансию откликнулся пользователь!';
-    let createBodyString = (userName, userEmail, phoneNumber, resume) => `На вашу вакансию откликнулся пользователь: ${userName}.\nВот его контактные данные:\nEmail: ${userEmail}\nНомер телефона: ${phoneNumber}, и резюме: ${resume}`;
+    let createBodyString = (userName, userEmail, phoneNumber, resume) => `На вашу вакансию откликнулся пользователь: ${userName}.\nВот его контактные данные:\nEmail: ${userEmail}\nНомер телефона: ${phoneNumber}, и резюме: \n${resume}`;
 
     try {
         let data = await fetchUserData(vacancyUserId);
