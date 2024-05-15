@@ -14,7 +14,6 @@ sudo rm -rf workingcom/workingcomlayout2-main workingcom/work
 source venv/bin/activate 
 
 sed -i 's/pywin32==306//g' workingcom/requirments.txt
-sed -i "s/ALLOWED_HOSTS = []/ALLOWED_HOSTS = [$MY_PUBLIC_IP, 'localhost']/g" workingcom/workingcom/settings.py
 pip3 install -r workingcom/requirments.txt
 sed  -i 's/root \/var\/www\/html/root \/usr\/share\/nginx\/html/g' /etc/nginx/sites-available/default
 systemctl restart nginx

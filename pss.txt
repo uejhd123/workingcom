@@ -1,0 +1,85 @@
+dSeGE0POzeYk
+http://46.148.229.104:8000/api/v1/vacancylist/?VacancyName=Frontend
+
+
+
+ root /var/www/html;
+
+
+
+почта:
+workingcommail _wW_90mhRV
+ePdAsHEt57NSdbWsHrtq
+
+Алгоритм запуска сервера
+
+скачиваем нужные программы:
+apt install nginx
+apt install git
+apt install python3-pip
+apt install mysql-server
+
+ЗАГРУЖАЕМ ЗАВИСИМОСТИ И ИСПРАВЛЯЕМ ОШИБКИ
+создаем venv
+python -m venv venv
+скрипт для запуска
+если возникает ошибка при установке req
+sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+ sudo apt install pkg-config
+python3 -m pip install --upgrade pip setuptools wheel
+короче проблема была с pywin теперь просто удаляю его из requirments.py
+скрипт для запуска сервера .sh:
+source venv/bin/activate
+nohup python3 workingcom/manage.py runserver 0.0.0.0:8000
+echo Сервер запущен
+
+ЗАПУСКАЕМ FRONTEND, ПЕРЕМЕЩАЕМ ФАЙЛЫ в /usr/share/nginx/html
+после следует изменить конфигурацию nginx(/etc/nginx/sites-available/default) и в качестве root задать /usr/share/nginx/html
+МЕНЯЕМ ВСЕ АДРЕСА (из localhost в нужный):
+sed -i 's/original/new/g' file.txt
+
+СОЗДАЕМ ПОЛЬЗОВАТЕЛЯ и БД
+создаем и настраиваем бд на сервере	
+CREATE USER 'workingcomAdmin'@'localhost' IDENTIFIED BY 'Admin_1234';
+GRANT ALL PRIVILEGES ON *.* TO 'workingcomAdmin'@'localhost' WITH GRANT OPTION;
+CREATE DATABASE workingcom;
+FLUSH PRIVILEGES;
+
+
+ебанутый скриптик который скачивает все зависимости и запускает сайт но перед запуском изменить файл settings.py и вписать ip сервака
+sudo apt update && sudo apt upgrade
+sudo apt install -y python3.10-venv 
+sudo apt install -y nginx
+sudo apt install -y git
+sudo apt install -y python3-pip
+sudo apt install -y mysql-server
+sudo apt-get install -y python3-dev default-libmysqlclient-dev build-essential
+sudo apt install -y pkg-config
+
+
+echo "CREATE USER if not exists 'workingcomAdmin'@'localhost' IDENTIFIED BY 'Admin_1234';
+GRANT ALL PRIVILEGES ON *.* TO 'workingcomAdmin'@'localhost' WITH GRANT OPTION;
+CREATE DATABASE if not exists workingcom;
+FLUSH PRIVILEGES;
+" > db.sql
+sudo mysql < db.sql
+
+cd /usr/share/nginx/html
+python3  -m venv venv
+git clone https://github.com/uejhd123/workingcom.git
+sudo mv workingcom/workingcomlayout2-main/* ./
+sudo rm -rf workingcom/workingcomlayout2-main workingcom/work
+
+source venv/bin/activate
+echo "venv activate"
+sed -i 's/pywin32==306//g' workingcom/requirments.txt
+pip3 install -r workingcom/requirments.txt
+sed  -i 's/root \/var\/www\/html/root \/usr\/share\/nginx\/html/g' /etc/nginx/sites-available/default
+systemctl restart nginx
+sed -i 's/localhost:8000/31.129.51.33:8000/g' js/*.js
+sed 's/ALLOWED_HOSTS = ['46.148.229.104', 'localhost', '127.0.0.1', 'localhost:7000']/111.111.111.111/g' workingcom/workingcom/settings.py
+sed -i 's/localhost:7000/31.129.51.33/g' js/*.js
+
+python3 workingcom/manage.py makemigrations
+python3 workingcom/manage.py migrate
+nohup python3 workingcom/manage.py runserver 0.0.0.0:8000
