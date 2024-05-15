@@ -1,10 +1,5 @@
 document.getElementById('userForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Предотвращаем стандартное действие отправки формы
-
-    function formatPhoneNumber(phoneNumberString) {
-        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-        return cleaned;
-     }
     const profileData = `
       Фамилия и имя:
     - ${this.last_name.value} ${this.first_name.value}
@@ -36,7 +31,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         last_name: this.last_name.value,
         email: this.email.value,
         password: this.password.value, // Убедитесь, что пароль отправляется безопасно и не в открытом виде
-        phone_number: formatPhoneNumber(this.phone_number.value),
+        phone_number: this.phone_number.value.replace(/[\s+()]/g, ''),
         address: this.address.value,
         bio: profileData
     };

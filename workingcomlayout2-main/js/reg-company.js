@@ -45,12 +45,12 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         last_name: "Компания",
         email: this.email.value,
         password: this.password.value, // Убедитесь, что пароль отправляется безопасно и не в открытом виде
-        phone_number: this.phone_number.value,
+        phone_number: this.phone_number.value.replace(/[\s+()]/g, ''),
         address: this.address.value,
         bio: companyData,
         CompanyAccount: true,
     };
-
+    console.log(formData.phone_number);
     // Отправляем данные на сервер с помощью POST-запроса
     fetch('http://localhost:8000/api/v1/useradd/', {
         method: 'POST',

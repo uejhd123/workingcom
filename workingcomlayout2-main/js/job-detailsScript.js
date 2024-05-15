@@ -35,10 +35,9 @@ async function renderJob(job) {
     let usr;
     try {
         let currentUserData = await fetchUserData(jwtPayload);
-        console.log(currentUserData);
-        console.log(job)
         companyAccount = currentUserData.CompanyAccount;
-        usr = currentUserData.first_name;
+        console.log(currentUserData)
+        usr = currentUserData.username;
     } catch(error) {
         console.log("Произошла ошибка");
     }

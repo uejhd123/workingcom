@@ -107,7 +107,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         first_name: this.first_name.value,
         last_name: this.last_name.value,
         email: this.email.value,
-        phone_number: phoneNum,
+        phone_number: phoneNum.replace(/[\s+()]/g, ''),
         address: this.address.value,
         bio: this.bio.value,
         password: this.password.value
