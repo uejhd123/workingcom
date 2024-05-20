@@ -254,7 +254,9 @@ async function sendMail() {
             document.getElementById('results').innerHTML = "Письмо отправлено";
             window.dialog.show()
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            alert("ошибка при отклике на вакансию");
+    });
     } catch (error) {
         console.error("Ошибка при загрузке вакансий");
     }

@@ -72,7 +72,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     })
     .catch(error => {
         console.error('Ошибка при отправке данных:', error);
-        // Обработка ошибки
+        alert("ошибка при регистрации");
     });
 });
 

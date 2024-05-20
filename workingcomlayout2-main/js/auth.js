@@ -22,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     })
     .then(response => {
         if (!response.ok) {
-            showError('Неверный пароль или логин');
+            alert("Неверный пароль или логин");
             throw new Error('Network response was not ok');
         }
         return response.json();
