@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="container">
+        <div class="screen" style="height: 1100px;">
+            <div class="screen__content">
+                <form action="/register" id="userForm" method="post" class="login">
+                    <h2>Регистрация</h2>
+                    <div class="login__field">
+                        <label for="user_username">Имя пользователя:</label>
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="user_username" name="username" required class="login__input" placeholder="Имя пользователя">
+                    </div>
+                    <div class="login__field">
+                        <label for="user_first_name">Имя:</label>
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="user_first_name" name="first_name" required class="login__input" placeholder="Имя">
+                    </div>
+                    <div class="login__field">
+                        <label for="user_last_name">Фамилия:</label>
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="user_last_name" name="last_name" required class="login__input" placeholder="Фамилия">
+                    </div>
+                    <div class="login__field">
+                        <label for="user_email">Email:</label>
+                        <i class="login__icon fas fa-envelope"></i>
+                        <input type="email" id="user_email" name="email" required class="login__input" placeholder="Email">
+                    </div>
+                    <div class="login__field">
+                        <label for="user_password">Пароль:</label>
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" id="user_password" name="password" required class="login__input" placeholder="Пароль">
+                    </div>
+                    <div class="login__field">
+                        <label for="user_phone_number">Номер телефона:</label>
+                        <i class="login__icon fas fa-phone"></i>
+                        <input type="tel" id="user_phone_number" name="phone_number" class="login__input tel" placeholder="Номер телефона">
+                    </div>
+                    <div class="login__field">
+                        <label for="user_address">Адрес:</label>
+                        <i class="login__icon fas fa-map-marker-alt"></i>
+                        <input type="text" id="user_address" name="address" class="login__input" placeholder="Адрес">
+                    </div>
+                    <button type="submit" class="button login__submit">
+                        <span class="button__text">Зарегистрироваться</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>		
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>		
+        </div>
+    </div>
+    <script src="js/reg.js"></script>
+</body>
+</html>

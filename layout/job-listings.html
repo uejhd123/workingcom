@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>WorkingCom</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/owl.carousel.min.css" rel="stylesheet">
+        <link href="css/owl.theme.default.min.css" rel="stylesheet">
+        <link href="css/tooplate-gotto-job.css" rel="stylesheet">
+    </head>
+    <body class="job-listings-page" id="top">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="images/logo.png" class="img-fluid logo-image">
+                    <div class="d-flex flex-column">
+                        <strong class="logo-text">Workingcom</strong>
+                        <small class="logo-slogan">Поиск работы онлайн</small>
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul id="nav-bar-list" class="navbar-nav align-items-center ms-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="job-listings.html">Список вакансий</a>
+                        </li>
+                        <li id="reg" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="reg-users.html">Регистрация</a>
+                        </li>
+                        <li id="reg-company" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="reg-company.html">Регистрация для компании</a>
+                        </li>
+                        <li id="auth" class="nav-item">
+                            <a class="nav-link custom-btn btn" href="auth.html" >Авторизация</a>
+                        </li>
+                        <li id="profile" class="nav-item ms-lg-auto">
+                            <a class="nav-link" href="profile.html">Мой профиль</a>
+                        </li>
+                    </ul>
+                </div>  
+            </div>
+        </nav>
+        <main>
+            <header class="site-header">
+                <div class="section-overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-center">
+                            <h1 class="text-white">Список вакансий</h1>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="section-padding pb-0 d-flex justify-content-center align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-12">
+                            <form id="searchForm" class="custom-form hero-form">
+                                <h3 class="text-white mb-3">Найдите работу мечты</h3>
+                                
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="bi-person custom-icon"></i></span>
+
+                                            <input type="text" name="job-title" id="job-title" class="form-control" placeholder="Название вакансии">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-12">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="bi-geo-alt custom-icon"></i></span>
+
+                                            <input type="text" name="job-location" id="job-location" class="form-control" placeholder="Местоположение">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-12" style="
+                                    width: 100%;
+                                ">
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1"><i class="bi-cash custom-icon"></i></span>
+
+                                            <select class="form-select form-control" name="job-salary" id="job-salary" aria-label="Default select example">
+                                                <option value="0-1000000" aria-placeholder="Зарплата">Любая</option>
+                                                <option value="0-50000">0-50 тыс. руб.</option>
+                                                <option value="50000-100000">50-100 тыс. руб.</option>
+                                                <option value="100000-200000">100-200 тыс. руб.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-12">
+                                        <button type="submit" class="form-control">
+                                            Найти работу
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="job-section section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-12 mb-lg-4">
+                            <h3 id="VacancyCount"></h3>
+                        </div>
+                        <div class="col-lg-4 col-12 d-flex align-items-center ms-auto mb-5 mb-lg-4">
+                        </div>
+                        <div id="jobs">
+                        </div>
+                        <div class="col-lg-12 col-12">
+                            <nav aria-label="Page navigation example">
+                                <ul id="Pag" class="pagination justify-content-center mt-5">
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">4</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">5</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <div class="site-footer-bottom">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-12 d-flex align-items-center">
+                            <p class="copyright-text">Copyright © Workingcom 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/counter.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/job-listing-scripts.js"></script>
+    </body>
+</html>

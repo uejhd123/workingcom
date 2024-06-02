@@ -1,0 +1,18 @@
+.input-area {
+    color: var(--dark-color);
+    width: 250px;
+}
+
+.input-area-i {
+    width: 300px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#deleteCookie {
+    padding: 10px;  
+}
+
+#changeProfile {
+    padding: 10px;
+}
